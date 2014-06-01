@@ -32,7 +32,7 @@ representation.
 
 %package -n appstream-util
 Summary:	Utility to do simple operations on AppStream metadata
-Group:		System/Packaging
+Group:		System/Libraries
 
 %description -n appstream-util
 Utility to do simple operations on AppStream metadata.
