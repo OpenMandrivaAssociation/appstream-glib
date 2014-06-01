@@ -8,7 +8,7 @@
 
 Name:		appstream-glib
 Version:	0.1.6
-Release:	%mkrel 1
+Release:	1
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
 License:	LGPLv2+
