@@ -22,6 +22,7 @@ BuildRequires:	pkgconfig(gthread-2.0)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(libarchive)
 BuildRequires:	pkgconfig(libsoup-2.4)
+BuildRequires:	pkgconfig(libpng16)
 
 %description
 This library provides GObjects and helper methods to make it easy to read and
