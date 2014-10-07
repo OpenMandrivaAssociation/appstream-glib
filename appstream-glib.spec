@@ -24,6 +24,8 @@ BuildRequires:	pkgconfig(libarchive)
 BuildRequires:	pkgconfig(libsoup-2.4)
 BuildRequires:	pkgconfig(libpng16)
 
+BuildRequires:	intltool
+
 %description
 This library provides GObjects and helper methods to make it easy to read and
 write AppStream metadata. It also provides a simple DOM implementation that
