@@ -30,7 +30,9 @@ BuildRequires:	pkgconfig(libarchive)
 BuildRequires:	pkgconfig(libsoup-2.4)
 BuildRequires:	pkgconfig(libpng16)
 BuildRequires:	pkgconfig(yaml-0.1)
+BuildRequires:	gtk-doc
 BuildRequires:	intltool
+BuildRequires:	xsltproc
 
 %description
 This library provides GObjects and helper methods to make it easy to read and
