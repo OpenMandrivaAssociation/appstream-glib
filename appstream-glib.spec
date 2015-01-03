@@ -33,6 +33,7 @@ BuildRequires:	pkgconfig(yaml-0.1)
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
 BuildRequires:	xsltproc
+BuildRequires:	docbook-dtd43-xml
 
 %description
 This library provides GObjects and helper methods to make it easy to read and
