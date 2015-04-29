@@ -30,6 +30,7 @@ BuildRequires:	pkgconfig(libarchive)
 BuildRequires:	pkgconfig(libsoup-2.4)
 BuildRequires:	pkgconfig(libpng16)
 BuildRequires:	pkgconfig(yaml-0.1)
+BuildRequires:	gcab
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
 BuildRequires:	xsltproc
