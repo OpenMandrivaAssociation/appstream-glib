@@ -132,6 +132,7 @@ find %{buildroot} -name "*.la" -delete
 %files -n appstream-util
 %{_bindir}/appstream-util
 %{_bindir}/appstream-builder
+%{_bindir}/appdata-validate
 %{_datadir}/bash-completion/completions/appstream-util
 %{_datadir}/bash-completion/completions/appstream-builder
 %{_libdir}/asb-plugins/libasb_plugin_*.so
@@ -166,6 +167,7 @@ find %{buildroot} -name "*.la" -delete
 %{_datadir}/gir-1.0/AppStreamGlib-%{gmajor}.gir
 %{_datadir}/gir-1.0/AppStreamBuilder-%{gmajor}.gir
 %{_datadir}/aclocal/appstream-xml.m4
+%{_datadir}/aclocal/appdata-xml.m4
 %{_datadir}/installed-tests/appstream-glib
 
 %files i18n -f %{name}.lang
