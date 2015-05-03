@@ -13,7 +13,7 @@
 
 Name:		appstream-glib
 Version:	0.3.6
-Release:	2
+Release:	3
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
 License:	LGPLv2+
@@ -35,7 +35,6 @@ BuildRequires:	gtk-doc
 BuildRequires:	intltool
 BuildRequires:	xsltproc
 BuildRequires:	docbook-dtd43-xml
-%rename		appdata-tools
 
 %description
 This library provides GObjects and helper methods to make it easy to read and
@@ -46,6 +45,7 @@ representation.
 %package -n appstream-util
 Summary:	Utility to do simple operations on AppStream metadata
 Group:		System/Libraries
+%rename	appdata-tools
 
 %description -n appstream-util
 Utility to do simple operations on AppStream metadata.
