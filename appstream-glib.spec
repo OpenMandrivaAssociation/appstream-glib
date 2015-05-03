@@ -35,7 +35,7 @@ BuildRequires:	gtk-doc
 BuildRequires:	intltool
 BuildRequires:	xsltproc
 BuildRequires:	docbook-dtd43-xml
-%rename		appdata-utils
+%rename		appdata-tools
 
 %description
 This library provides GObjects and helper methods to make it easy to read and
