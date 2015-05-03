@@ -13,7 +13,7 @@
 
 Name:		appstream-glib
 Version:	0.3.6
-Release:	1
+Release:	2
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
 License:	LGPLv2+
@@ -35,6 +35,7 @@ BuildRequires:	gtk-doc
 BuildRequires:	intltool
 BuildRequires:	xsltproc
 BuildRequires:	docbook-dtd43-xml
+%rename		appdata-utils
 
 %description
 This library provides GObjects and helper methods to make it easy to read and
