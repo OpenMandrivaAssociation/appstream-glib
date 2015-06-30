@@ -1,6 +1,3 @@
-removed_sources:
-  appstream-glib-0.1.6.tar.xz: 1131302183b10893f2dfbdc25d7d842ffd7f3478
-  appstream-glib-0.2.5.tar.xz: 3a67866aa609dda7733cf71d2567b82c1455bd71
-  appstream-glib-0.3.0.tar.xz: db2a66bdd10f0dc697482eb2a0a7aa90c14bfa23
+---
 sources:
-  appstream-glib-0.3.6.tar.xz: eec2aff1ee521f8976550883afcd84a0415dd71a
+  appstream-glib-0.4.-0tar.xz: 9f31f21921ee42045464c01704ab862a9c333b9a

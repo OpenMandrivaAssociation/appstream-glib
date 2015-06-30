@@ -12,8 +12,8 @@
 %define url_ver	%(echo %{version} | cut -d. -f1,2)
 
 Name:		appstream-glib
-Version:	0.3.6
-Release:	3
+Version:	0.4.0
+Release:	1
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
 License:	LGPLv2+
@@ -172,4 +172,3 @@ find %{buildroot} -name "*.la" -delete
 %{_datadir}/installed-tests/appstream-glib
 
 %files i18n -f %{name}.lang
-
