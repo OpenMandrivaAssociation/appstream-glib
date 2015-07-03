@@ -136,7 +136,7 @@ find %{buildroot} -name "*.la" -delete
 %{_bindir}/appdata-validate
 %{_datadir}/bash-completion/completions/appstream-util
 %{_datadir}/bash-completion/completions/appstream-builder
-%{_libdir}/asb-plugins/libasb_plugin_*.so
+%{_libdir}/asb-plugins-2/libasb_plugin_*.so
 %{_mandir}/man1/appstream-builder.1*
 %{_mandir}/man1/appstream-util.1*
 
