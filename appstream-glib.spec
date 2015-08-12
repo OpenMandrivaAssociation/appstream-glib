@@ -1,6 +1,8 @@
-%define _disable_ld_no_undefined 1
+%define debug_package	%{nil}
 
-%define major	7
+%define _disable_ld_no_undefined 1
+%define api 2
+%define major	8
 %define gmajor	1.0
 %define libname	%mklibname %{name} %{major}
 %define devname	%mklibname %{name} -d
@@ -12,13 +14,14 @@
 %define url_ver	%(echo %{version} | cut -d. -f1,2)
 
 Name:		appstream-glib
-Version:	0.4.0
-Release:	2
+Version:	0.5.0
+Release:	1
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
 License:	LGPLv2+
 URL:		http://people.freedesktop.org/~hughsient/appstream-glib/
 Source0:	http://people.freedesktop.org/~hughsient/appstream-glib/releases/%{name}-%{version}.tar.xz
+
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:	pkgconfig(glib-2.0) >= 2.16.1
 BuildRequires:	pkgconfig(gio-2.0)
@@ -45,7 +48,7 @@ representation.
 %package -n appstream-util
 Summary:	Utility to do simple operations on AppStream metadata
 Group:		System/Libraries
-%rename	appdata-tools
+Requires:	%{libname} = %{EVRD}
 
 %description -n appstream-util
 Utility to do simple operations on AppStream metadata.
@@ -53,11 +56,23 @@ Utility to do simple operations on AppStream metadata.
 Sub-commands understood by this utility include: 'install', 'uninstall',
 'dump' and 'convert'.
 
+
+%files -n appstream-util
+%doc AUTHORS docs/api/html
+%{_bindir}/appstream-util
+%{_bindir}/appstream-builder
+%{_bindir}/appdata-validate
+%{_datadir}/bash-completion/completions/appstream-util
+%{_datadir}/bash-completion/completions/appstream-builder
+%{_libdir}/asb-plugins-%{api}/libasb_plugin_*.so
+%{_mandir}/man1/appstream-builder.1*
+%{_mandir}/man1/appstream-util.1*
+
+#---------------------------------------------
 %package -n %{libname}
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
-Obsoletes:	%{_lib}appstream-glib1.0_1 < 0.1.1-2
-Requires:	%{name}-i18n >= %{version}-%{release}
+Requires:	%{name}-i18n >= %{EVRD}
 
 %description -n %{libname}
 This library provides GObjects and helper methods to make it easy to read and
@@ -65,10 +80,17 @@ write AppStream metadata. It also provides a simple DOM implementation that
 makes it easy to edit nodes and convert to and from the standardized XML
 representation.
 
+
+%files -n %{libname}
+%doc AUTHORS docs/api/html
+%{_libdir}/lib%{name}.so.%{major}
+%{_libdir}/lib%{name}.so.%{major}.*
+
+#---------------------------------------------
 %package -n %{libnameappstream_builder}
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
-Requires:	%{name}-i18n >= %{version}-%{release}
+Requires:	%{name}-i18n >= %{EVRD}
 
 %description -n %{libnameappstream_builder}
 This library provides GObjects and helper methods to make it easy to read and
@@ -76,86 +98,50 @@ write AppStream metadata. It also provides a simple DOM implementation that
 makes it easy to edit nodes and convert to and from the standardized XML
 representation.
 
+%files -n %{libnameappstream_builder}
+%doc AUTHORS docs/api/html
+%{_libdir}/libappstream-builder.so.%{major}
+%{_libdir}/libappstream-builder.so.%{major}.*
+
+#---------------------------------------------
 %package -n %{girname}
 Summary:	GObject Introspection interface description for %{name}
 Group:		System/Libraries
-Requires:	%{libname} = %{version}-%{release}
-Conflicts:	%{_lib}appstream-glib1.0_1 < 0.1.1-2
+Requires:	%{libname} = %{EVRD}
 
 %description -n %{girname}
 GObject Introspection interface description for %{name}.
 
+
+%files -n %{girname}
+%doc AUTHORS docs/api/html
+%{_libdir}/girepository-1.0/AppStreamGlib-%{gmajor}.typelib
+
+#---------------------------------------------
 %package -n %{girnameappstream_builder}
 Summary:	GObject Introspection interface description for %{name}
 Group:		System/Libraries
-Requires:	%{libnameappstream_builder} = %{version}-%{release}
+Requires:	%{libnameappstream_builder} = %{EVRD}
 
 %description -n %{girnameappstream_builder}
 GObject Introspection interface description for %{name}.
 
+
+%files -n %{girnameappstream_builder}
+%doc AUTHORS docs/api/html
+%{_libdir}/girepository-1.0/AppStreamBuilder-%{gmajor}.typelib
+
+#---------------------------------------------
 %package -n %{devname}
 Summary:	Development files for %{name}
 Group:		Development/C
-Requires:	%{libname} = %{version}-%{release}
-Provides:	%{name}-devel = %{version}-%{release}
-Provides:	lib%{name}-devel = %{version}-%{release}
-Obsoletes:	%{_lib}appstream-glib1.0-devel < 0.1.1-2
+Requires:	%{libname} = %{EVRD}
+Provides:	%{name}-devel = %{EVRD}
+Provides:	lib%{name}-devel = %{EVRD}
 
 %description -n %{devname}
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
-%package i18n
-Summary:	Library for reading and writing AppStream metadata - translations
-Group:		System/Internationalization
-BuildArch:	noarch
-
-%description i18n
-This package contains translations used by %{name}.
-
-%prep
-%setup -q
-
-%build
-%configure \
-	--disable-static \
-	--disable-rpm
-%make
-
-%install
-%makeinstall_std
-
-# Remove unwanted la files
-find %{buildroot} -name "*.la" -delete
-
-%{find_lang} %{name}
-
-%files -n appstream-util
-%{_bindir}/appstream-util
-%{_bindir}/appstream-builder
-%{_bindir}/appdata-validate
-%{_datadir}/bash-completion/completions/appstream-util
-%{_datadir}/bash-completion/completions/appstream-builder
-%{_libdir}/asb-plugins-2/libasb_plugin_*.so
-%{_mandir}/man1/appstream-builder.1*
-%{_mandir}/man1/appstream-util.1*
-
-%files -n %{libname}
-%doc AUTHORS NEWS
-%{_libdir}/lib%{name}.so.%{major}
-%{_libdir}/lib%{name}.so.%{major}.*
-#%{python3_sitearch}/gi/overrides/*
-
-%files -n %{libnameappstream_builder}
-%{_libdir}/libappstream-builder.so.%{major}
-%{_libdir}/libappstream-builder.so.%{major}.*
-
-%files -n %{girname}
-%{_libdir}/girepository-1.0/AppStreamGlib-%{gmajor}.typelib
-
-
-%files -n %{girnameappstream_builder}
-%{_libdir}/girepository-1.0/AppStreamBuilder-%{gmajor}.typelib
 
 %files -n %{devname}
 %doc %{_datadir}/gtk-doc/html/appstream-glib/
@@ -170,5 +156,34 @@ find %{buildroot} -name "*.la" -delete
 %{_datadir}/aclocal/appstream-xml.m4
 %{_datadir}/aclocal/appdata-xml.m4
 %{_datadir}/installed-tests/appstream-glib
+#---------------------------------------------
+
+%package i18n
+Summary:	Library for reading and writing AppStream metadata - translations
+Group:		System/Internationalization
+BuildArch:	noarch
+
+%description i18n
+This package contains translations used by %{name}.
+
 
 %files i18n -f %{name}.lang
+%doc AUTHORS docs/api/html
+#---------------------------------------------
+
+%prep
+%setup -q
+
+%build
+%configure2_5x \
+	--disable-static \
+	--disable-rpm
+%make
+
+%install
+%makeinstall_std
+
+# Remove unwanted la files
+find %{buildroot} -name "*.la" -delete
+
+%{find_lang} %{name}
