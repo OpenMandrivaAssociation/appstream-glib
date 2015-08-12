@@ -1,5 +1,3 @@
-%define debug_package	%{nil}
-
 %define _disable_ld_no_undefined 1
 %define api 2
 %define major	8
@@ -7,10 +5,8 @@
 %define libname	%mklibname %{name} %{major}
 %define devname	%mklibname %{name} -d
 %define girname	%mklibname %{name}-gir %{gmajor}
-
 %define libnameappstream_builder	%mklibname appstream-builder %{major}
 %define girnameappstream_builder	%mklibname appstream-builder-gir %{gmajor}
-
 %define url_ver	%(echo %{version} | cut -d. -f1,2)
 
 Name:		appstream-glib
@@ -19,7 +15,7 @@ Release:	1
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
 License:	LGPLv2+
-URL:		http://people.freedesktop.org/~hughsient/appstream-glib/
+Url:		http://people.freedesktop.org/~hughsient/appstream-glib/
 Source0:	http://people.freedesktop.org/~hughsient/appstream-glib/releases/%{name}-%{version}.tar.xz
 
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
