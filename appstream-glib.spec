@@ -10,7 +10,7 @@
 %define url_ver	%(echo %{version} | cut -d. -f1,2)
 
 Name:		appstream-glib
-Version:	0.5.0
+Version:	0.5.1
 Release:	1
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
@@ -171,7 +171,7 @@ This package contains translations used by %{name}.
 %setup -q
 
 %build
-%configure2_5x \
+%configure \
 	--disable-static \
 	--disable-rpm
 %make
