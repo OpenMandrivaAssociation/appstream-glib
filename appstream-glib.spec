@@ -1,12 +1,12 @@
 %define _disable_ld_no_undefined 1
-%define api 2
-%define major	8
-%define gmajor	1.0
-%define libname	%mklibname %{name} %{major}
-%define devname	%mklibname %{name} -d
-%define girname	%mklibname %{name}-gir %{gmajor}
-%define libnameappstream_builder	%mklibname appstream-builder %{major}
-%define girnameappstream_builder	%mklibname appstream-builder-gir %{gmajor}
+%define api 4
+%define major 8
+%define gmajor 1.0
+%define libname %mklibname %{name} %{major}
+%define devname %mklibname %{name} -d
+%define girname %mklibname %{name}-gir %{gmajor}
+%define libnameappstream_builder %mklibname appstream-builder %{major}
+%define girnameappstream_builder %mklibname appstream-builder-gir %{gmajor}
 %define url_ver	%(echo %{version} | cut -d. -f1,2)
 
 Name:		appstream-glib
@@ -59,7 +59,6 @@ Sub-commands understood by this utility include: 'install', 'uninstall',
 %doc AUTHORS docs/api/html
 %{_bindir}/appstream-util
 %{_bindir}/appstream-builder
-%{_bindir}/appdata-validate
 %{_datadir}/bash-completion/completions/appstream-util
 %{_datadir}/bash-completion/completions/appstream-builder
 %{_libdir}/asb-plugins-%{api}/libasb_plugin_*.so
