@@ -60,6 +60,7 @@ Sub-commands understood by this utility include: 'install', 'uninstall',
 %doc AUTHORS docs/api/html
 %{_bindir}/appstream-util
 %{_bindir}/appstream-builder
+%{_bindir}/appstream-compose
 %{_datadir}/bash-completion/completions/appstream-util
 %{_datadir}/bash-completion/completions/appstream-builder
 %{_libdir}/asb-plugins-%{api}/libasb_plugin_*.so
