@@ -1,17 +1,17 @@
 %define _disable_ld_no_undefined 1
-%define api 2
-%define major	8
-%define gmajor	1.0
-%define libname	%mklibname %{name} %{major}
-%define devname	%mklibname %{name} -d
-%define girname	%mklibname %{name}-gir %{gmajor}
-%define libnameappstream_builder	%mklibname appstream-builder %{major}
-%define girnameappstream_builder	%mklibname appstream-builder-gir %{gmajor}
+%define api 5
+%define major 8
+%define gmajor 1.0
+%define libname %mklibname %{name} %{major}
+%define devname %mklibname %{name} -d
+%define girname %mklibname %{name}-gir %{gmajor}
+%define libnameappstream_builder %mklibname appstream-builder %{major}
+%define girnameappstream_builder %mklibname appstream-builder-gir %{gmajor}
 %define url_ver	%(echo %{version} | cut -d. -f1,2)
 
 Name:		appstream-glib
-Version:	0.5.0
-Release:	1
+Version:	0.5.11
+Release:	0.1
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
 License:	LGPLv2+
@@ -25,10 +25,13 @@ BuildRequires:	pkgconfig(gobject-2.0)
 BuildRequires:	pkgconfig(gthread-2.0)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
+BuildRequires:	pkgconfig(json-glib-1.0) >= 1.1.1
 BuildRequires:	pkgconfig(libarchive)
 BuildRequires:	pkgconfig(libsoup-2.4)
 BuildRequires:	pkgconfig(libpng16)
 BuildRequires:	pkgconfig(yaml-0.1)
+BuildRequires:	pkgconfig(uuid)
+BuildRequires:	pkgconfig(libgcab-1.0)
 BuildRequires:	gcab
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
@@ -57,12 +60,13 @@ Sub-commands understood by this utility include: 'install', 'uninstall',
 %doc AUTHORS docs/api/html
 %{_bindir}/appstream-util
 %{_bindir}/appstream-builder
-%{_bindir}/appdata-validate
+%{_bindir}/appstream-compose
 %{_datadir}/bash-completion/completions/appstream-util
 %{_datadir}/bash-completion/completions/appstream-builder
 %{_libdir}/asb-plugins-%{api}/libasb_plugin_*.so
 %{_mandir}/man1/appstream-builder.1*
 %{_mandir}/man1/appstream-util.1*
+%{_mandir}/man1/appstream-compose.1*
 
 #---------------------------------------------
 %package -n %{libname}
@@ -78,7 +82,6 @@ representation.
 
 
 %files -n %{libname}
-%doc AUTHORS docs/api/html
 %{_libdir}/lib%{name}.so.%{major}
 %{_libdir}/lib%{name}.so.%{major}.*
 
@@ -95,7 +98,6 @@ makes it easy to edit nodes and convert to and from the standardized XML
 representation.
 
 %files -n %{libnameappstream_builder}
-%doc AUTHORS docs/api/html
 %{_libdir}/libappstream-builder.so.%{major}
 %{_libdir}/libappstream-builder.so.%{major}.*
 
@@ -110,7 +112,6 @@ GObject Introspection interface description for %{name}.
 
 
 %files -n %{girname}
-%doc AUTHORS docs/api/html
 %{_libdir}/girepository-1.0/AppStreamGlib-%{gmajor}.typelib
 
 #---------------------------------------------
@@ -124,7 +125,6 @@ GObject Introspection interface description for %{name}.
 
 
 %files -n %{girnameappstream_builder}
-%doc AUTHORS docs/api/html
 %{_libdir}/girepository-1.0/AppStreamBuilder-%{gmajor}.typelib
 
 #---------------------------------------------
@@ -152,6 +152,8 @@ developing applications that use %{name}.
 %{_datadir}/aclocal/appstream-xml.m4
 %{_datadir}/aclocal/appdata-xml.m4
 %{_datadir}/installed-tests/appstream-glib
+%{_datadir}/gettext/its/appdata.its
+%{_datadir}/gettext/its/appdata.loc
 #---------------------------------------------
 
 %package i18n
@@ -164,7 +166,7 @@ This package contains translations used by %{name}.
 
 
 %files i18n -f %{name}.lang
-%doc AUTHORS docs/api/html
+
 #---------------------------------------------
 
 %prep
