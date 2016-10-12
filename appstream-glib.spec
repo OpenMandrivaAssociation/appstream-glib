@@ -1,4 +1,5 @@
 %define _disable_ld_no_undefined 1
+%define _disable_rebuild_configure 1
 %define api 5
 %define major 8
 %define gmajor 1.0
