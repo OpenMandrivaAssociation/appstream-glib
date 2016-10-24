@@ -1,4 +1,5 @@
 %define _disable_ld_no_undefined 1
+%define _disable_rebuild_configure 1
 %define api 5
 %define major 8
 %define gmajor 1.0
@@ -10,7 +11,7 @@
 %define url_ver	%(echo %{version} | cut -d. -f1,2)
 
 Name:		appstream-glib
-Version:	0.5.14
+Version:	0.6.4
 Release:	1
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
@@ -54,7 +55,6 @@ Utility to do simple operations on AppStream metadata.
 
 Sub-commands understood by this utility include: 'install', 'uninstall',
 'dump' and 'convert'.
-
 
 %files -n appstream-util
 %doc AUTHORS docs/api/html
