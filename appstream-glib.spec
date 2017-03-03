@@ -34,6 +34,7 @@ BuildRequires:	pkgconfig(yaml-0.1)
 BuildRequires:	pkgconfig(uuid)
 BuildRequires:	pkgconfig(libgcab-1.0)
 BuildRequires:	gcab
+BuildRequires:	gperf
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
 BuildRequires:	xsltproc
