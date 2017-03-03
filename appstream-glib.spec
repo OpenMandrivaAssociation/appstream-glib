@@ -11,7 +11,7 @@
 %define url_ver	%(echo %{version} | cut -d. -f1,2)
 
 Name:		appstream-glib
-Version:	0.6.7
+Version:	0.6.9
 Release:	1
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
@@ -34,6 +34,7 @@ BuildRequires:	pkgconfig(yaml-0.1)
 BuildRequires:	pkgconfig(uuid)
 BuildRequires:	pkgconfig(libgcab-1.0)
 BuildRequires:	gcab
+BuildRequires:	gperf
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
 BuildRequires:	xsltproc
