@@ -1,5 +1,4 @@
 %define _disable_ld_no_undefined 1
-%define _disable_rebuild_configure 1
 %define api 5
 %define major 8
 %define gmajor 1.0
@@ -12,12 +11,22 @@
 
 Name:		appstream-glib
 Version:	0.6.9
-Release:	1
+Release:	2
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://people.freedesktop.org/~hughsient/appstream-glib/
 Source0:	http://people.freedesktop.org/~hughsient/appstream-glib/releases/%{name}-%{version}.tar.xz
+
+# Patch from PLD to port to RPM plugin to RPM 5 API
+Patch100:	appstream-glib-rpm5.patch
+
+# Because of Patch100, we need to regenerate autofoo
+BuildRequires:	autoconf
+BuildRequires:	autoconf-archive
+BuildRequires:	automake
+BuildRequires:	libtool
+BuildRequires:	gettext-devel
 
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:	pkgconfig(glib-2.0) >= 2.16.1
@@ -33,6 +42,7 @@ BuildRequires:	pkgconfig(libpng16)
 BuildRequires:	pkgconfig(yaml-0.1)
 BuildRequires:	pkgconfig(uuid)
 BuildRequires:	pkgconfig(libgcab-1.0)
+BuildRequires:	pkgconfig(rpm)
 BuildRequires:	gcab
 BuildRequires:	gperf
 BuildRequires:	gtk-doc
@@ -172,11 +182,10 @@ This package contains translations used by %{name}.
 
 %prep
 %setup -q
+%apply_patches
 
 %build
-%configure \
-	--disable-static \
-	--disable-rpm
+%configure --disable-static
 %make
 
 %install
