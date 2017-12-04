@@ -22,12 +22,8 @@ Source0:	http://people.freedesktop.org/~hughsient/appstream-glib/releases/%{name
 Patch100:	appstream-glib-rpm5.patch
 
 # Because of Patch100, we need to regenerate autofoo
-BuildRequires:	autoconf
-BuildRequires:	autoconf-archive
-BuildRequires:	automake
-BuildRequires:	libtool
+BuildRequires:	meson
 BuildRequires:	gettext-devel
-
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:	pkgconfig(glib-2.0) >= 2.16.1
 BuildRequires:	pkgconfig(gio-2.0)
@@ -183,13 +179,13 @@ This package contains translations used by %{name}.
 %prep
 %setup -q
 %apply_patches
+%meson
 
 %build
-%configure --disable-static
-%make
+%meson_build
 
 %install
-%makeinstall_std
+%meson_install
 
 # Remove unwanted la files
 find %{buildroot} -name "*.la" -delete
