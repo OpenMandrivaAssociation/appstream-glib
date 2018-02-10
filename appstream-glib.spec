@@ -10,7 +10,7 @@
 %define url_ver	%(echo %{version} | cut -d. -f1,2)
 
 Name:		appstream-glib
-Version:	0.7.4
+Version:	0.7.6
 Release:	1
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
