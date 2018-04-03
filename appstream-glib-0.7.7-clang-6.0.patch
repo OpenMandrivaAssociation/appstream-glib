@@ -1,0 +1,21 @@
+diff -up appstream-glib-0.7.7/libappstream-glib/as-app.c.omv~ appstream-glib-0.7.7/libappstream-glib/as-app.c
+--- appstream-glib-0.7.7/libappstream-glib/as-app.c.omv~	2018-04-03 11:55:59.194899145 +0200
++++ appstream-glib-0.7.7/libappstream-glib/as-app.c	2018-04-03 11:56:34.322039612 +0200
+@@ -1614,7 +1614,7 @@ AsIdKind
+ as_app_get_id_kind (AsApp *app)
+ {
+ 	AsAppPrivate *priv = GET_PRIVATE (app);
+-	return priv->kind;
++	return (AsIdKind)priv->kind;
+ }
+ G_GNUC_END_IGNORE_DEPRECATIONS
+ 
+@@ -2395,7 +2395,7 @@ void
+ as_app_set_id_kind (AsApp *app, AsIdKind id_kind)
+ {
+ 	AsAppPrivate *priv = GET_PRIVATE (app);
+-	priv->kind = id_kind;
++	priv->kind = (AsAppKind)id_kind;
+ }
+ G_GNUC_END_IGNORE_DEPRECATIONS
+ 

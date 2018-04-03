@@ -8,9 +8,10 @@
 %define libnameappstream_builder %mklibname appstream-builder %{major}
 %define girnameappstream_builder %mklibname appstream-builder-gir %{gmajor}
 %define url_ver	%(echo %{version} | cut -d. -f1,2)
+%global optflags %{optflags} -I%{_includedir}/libstemmer
 
 Name:		appstream-glib
-Version:	0.7.6
+Version:	0.7.7
 Release:	1
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
@@ -18,10 +19,6 @@ License:	LGPLv2+
 Url:		http://people.freedesktop.org/~hughsient/appstream-glib/
 Source0:	http://people.freedesktop.org/~hughsient/appstream-glib/releases/%{name}-%{version}.tar.xz
 
-# Patch from PLD to port to RPM plugin to RPM 5 API
-Patch100:	appstream-glib-rpm5.patch
-
-# Because of Patch100, we need to regenerate autofoo
 BuildRequires:	meson
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
@@ -39,6 +36,7 @@ BuildRequires:	pkgconfig(yaml-0.1)
 BuildRequires:	pkgconfig(uuid)
 BuildRequires:	pkgconfig(libgcab-1.0)
 BuildRequires:	pkgconfig(rpm)
+BuildRequires:	libstemmer-devel
 BuildRequires:	gcab
 BuildRequires:	gperf
 BuildRequires:	gtk-doc
@@ -64,7 +62,6 @@ Sub-commands understood by this utility include: 'install', 'uninstall',
 'dump' and 'convert'.
 
 %files -n appstream-util
-%doc AUTHORS docs/api/html
 %{_bindir}/appstream-util
 %{_bindir}/appstream-builder
 %{_bindir}/appstream-compose
@@ -147,7 +144,6 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %files -n %{devname}
-%doc %{_datadir}/gtk-doc/html/appstream-glib/
 %{_includedir}/lib%{name}/
 %{_libdir}/lib%{name}.so
 %{_libdir}/pkgconfig/%{name}.pc
@@ -177,8 +173,7 @@ This package contains translations used by %{name}.
 #---------------------------------------------
 
 %prep
-%setup -q
-%apply_patches
+%autosetup -p1
 %meson
 
 %build
@@ -186,8 +181,5 @@ This package contains translations used by %{name}.
 
 %install
 %meson_install
-
-# Remove unwanted la files
-find %{buildroot} -name "*.la" -delete
 
 %{find_lang} %{name}
