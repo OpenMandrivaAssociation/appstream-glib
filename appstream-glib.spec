@@ -35,6 +35,7 @@ BuildRequires:	pkgconfig(libpng16)
 BuildRequires:	pkgconfig(yaml-0.1)
 BuildRequires:	pkgconfig(uuid)
 BuildRequires:	pkgconfig(libgcab-1.0)
+BuildRequires:  pkgconfig(popt)
 BuildRequires:	pkgconfig(rpm)
 BuildRequires:	libstemmer-devel
 BuildRequires:	gcab
