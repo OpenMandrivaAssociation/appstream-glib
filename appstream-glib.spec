@@ -175,9 +175,19 @@ This package contains translations used by %{name}.
 
 %prep
 %autosetup -p1
+%ifarch %{arm}
+# FIXME Workaround for g-ir-scanner not finding the clang
+# LTO plugin (causing build failure)
+export CC=gcc
+%endif
 %meson
 
 %build
+%ifarch %{arm}
+# FIXME Workaround for g-ir-scanner not finding the clang
+# LTO plugin (causing build failure)
+export CC=gcc
+%endif
 %meson_build
 
 %install
