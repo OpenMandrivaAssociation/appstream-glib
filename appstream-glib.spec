@@ -12,7 +12,7 @@
 
 Name:		appstream-glib
 Version:	0.7.12
-Release:	1
+Release:	2
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
 License:	LGPLv2+
@@ -40,7 +40,7 @@ BuildRequires:	pkgconfig(rpm)
 BuildRequires:	libstemmer-devel
 BuildRequires:	gcab
 BuildRequires:	gperf
-BuildRequires:	gtk-doc
+#BuildRequires:	gtk-doc
 BuildRequires:	intltool
 BuildRequires:	xsltproc
 BuildRequires:	docbook-dtd43-xml
@@ -85,7 +85,6 @@ write AppStream metadata. It also provides a simple DOM implementation that
 makes it easy to edit nodes and convert to and from the standardized XML
 representation.
 
-
 %files -n %{libname}
 %{_libdir}/lib%{name}.so.%{major}
 %{_libdir}/lib%{name}.so.%{major}.*
@@ -127,7 +126,6 @@ Requires:	%{libnameappstream_builder} = %{EVRD}
 
 %description -n %{girnameappstream_builder}
 GObject Introspection interface description for %{name}.
-
 
 %files -n %{girnameappstream_builder}
 %{_libdir}/girepository-1.0/AppStreamBuilder-%{gmajor}.typelib
@@ -180,7 +178,10 @@ This package contains translations used by %{name}.
 # LTO plugin (causing build failure)
 export CC=gcc
 %endif
-%meson
+%meson \
+  -Dgtk-doc=false \
+  -Dstemmer=true \
+  -Ddep11=true
 
 %build
 %ifarch %{arm}
