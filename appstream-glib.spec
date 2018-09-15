@@ -44,6 +44,7 @@ BuildRequires:	gperf
 BuildRequires:	intltool
 BuildRequires:	xsltproc
 BuildRequires:	docbook-dtd43-xml
+BuildRequires:	docbook-style-xsl
 
 %description
 This library provides GObjects and helper methods to make it easy to read and
