@@ -11,7 +11,7 @@
 %global optflags %{optflags} -I%{_includedir}/libstemmer
 
 Name:		appstream-glib
-Version:	0.7.13
+Version:	0.7.14
 Release:	1
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
