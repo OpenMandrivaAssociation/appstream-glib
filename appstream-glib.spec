@@ -11,8 +11,8 @@
 %global optflags %{optflags} -I%{_includedir}/libstemmer
 
 Name:		appstream-glib
-Version:	0.7.14
-Release:	2
+Version:	0.7.15
+Release:	1
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
 License:	LGPLv2+
@@ -115,7 +115,6 @@ Requires:	%{libname} = %{EVRD}
 %description -n %{girname}
 GObject Introspection interface description for %{name}.
 
-
 %files -n %{girname}
 %{_libdir}/girepository-1.0/AppStreamGlib-%{gmajor}.typelib
 
@@ -166,7 +165,6 @@ BuildArch:	noarch
 
 %description i18n
 This package contains translations used by %{name}.
-
 
 %files i18n -f %{name}.lang
 
