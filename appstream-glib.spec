@@ -5,8 +5,6 @@
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname %{name} -d
 %define girname %mklibname %{name}-gir %{gmajor}
-%define libnameappstream_builder %mklibname appstream-builder %{major}
-%define girnameappstream_builder %mklibname appstream-builder-gir %{gmajor}
 %define url_ver	%(echo %{version} | cut -d. -f1,2)
 %global optflags %{optflags} -I%{_includedir}/libstemmer
 
@@ -79,6 +77,8 @@ Sub-commands understood by this utility include: 'install', 'uninstall',
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
 Requires:	%{name}-i18n >= %{EVRD}
+Obsoletes:	%{mklibname appstream-builder 8} < 0.7.15
+Provides:	%{mklibname appstream-builder 8} = 0.7.15
 
 %description -n %{libname}
 This library provides GObjects and helper methods to make it easy to read and
@@ -91,44 +91,18 @@ representation.
 %{_libdir}/lib%{name}.so.%{major}.*
 
 #---------------------------------------------
-%package -n %{libnameappstream_builder}
-Summary:	Library for reading and writing AppStream metadata
-Group:		System/Libraries
-Requires:	%{name}-i18n >= %{EVRD}
-
-%description -n %{libnameappstream_builder}
-This library provides GObjects and helper methods to make it easy to read and
-write AppStream metadata. It also provides a simple DOM implementation that
-makes it easy to edit nodes and convert to and from the standardized XML
-representation.
-
-%files -n %{libnameappstream_builder}
-%{_libdir}/libappstream-builder.so.%{major}
-%{_libdir}/libappstream-builder.so.%{major}.*
-
-#---------------------------------------------
 %package -n %{girname}
 Summary:	GObject Introspection interface description for %{name}
 Group:		System/Libraries
 Requires:	%{libname} = %{EVRD}
+Obsoletes:	%{mklibname appstream-builder-gir 1.0} < 0.7.15
+Provides:	%{mklibname appstream-builder-gir 1.0} = 0.7.15
 
 %description -n %{girname}
 GObject Introspection interface description for %{name}.
 
 %files -n %{girname}
 %{_libdir}/girepository-1.0/AppStreamGlib-%{gmajor}.typelib
-
-#---------------------------------------------
-%package -n %{girnameappstream_builder}
-Summary:	GObject Introspection interface description for %{name}
-Group:		System/Libraries
-Requires:	%{libnameappstream_builder} = %{EVRD}
-
-%description -n %{girnameappstream_builder}
-GObject Introspection interface description for %{name}.
-
-%files -n %{girnameappstream_builder}
-%{_libdir}/girepository-1.0/AppStreamBuilder-%{gmajor}.typelib
 
 #---------------------------------------------
 %package -n %{devname}
@@ -146,11 +120,7 @@ developing applications that use %{name}.
 %{_includedir}/lib%{name}/
 %{_libdir}/lib%{name}.so
 %{_libdir}/pkgconfig/%{name}.pc
-%{_libdir}/pkgconfig/appstream-builder.pc
-%{_includedir}/libappstream-builder/
-%{_libdir}/libappstream-builder.so
 %{_datadir}/gir-1.0/AppStreamGlib-%{gmajor}.gir
-%{_datadir}/gir-1.0/AppStreamBuilder-%{gmajor}.gir
 %{_datadir}/aclocal/appstream-xml.m4
 %{_datadir}/aclocal/appdata-xml.m4
 %{_datadir}/installed-tests/appstream-glib
