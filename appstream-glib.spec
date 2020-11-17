@@ -9,13 +9,13 @@
 %global optflags %{optflags} -I%{_includedir}/libstemmer
 
 Name:		appstream-glib
-Version:	0.7.16.20200113
+Version:	0.7.18
 Release:	1
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://people.freedesktop.org/~hughsient/appstream-glib/
-Source0:	https://github.com/hughsie/appstream-glib/archive/master/appstream-glib-master.tar.gz
+Source0:	http://people.freedesktop.org/~hughsient/appstream-glib/releases/%{name}-%{version}.tar.xz
 
 BuildRequires:	meson
 BuildRequires:	gettext-devel
@@ -141,7 +141,8 @@ This package contains translations used by %{name}.
 #---------------------------------------------
 
 %prep
-%autosetup -p1 -n appstream-glib-master
+%autosetup -p1
+
 %meson \
   -Dgtk-doc=false \
   -Dstemmer=true \
