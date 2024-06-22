@@ -35,7 +35,6 @@ BuildRequires:	pkgconfig(uuid)
 BuildRequires:	pkgconfig(libgcab-1.0)
 BuildRequires:  pkgconfig(popt)
 BuildRequires:	pkgconfig(rpm)
-BuildRequires:	libstemmer-devel
 BuildRequires:	gcab
 BuildRequires:	gperf
 #BuildRequires:	gtk-doc
@@ -145,7 +144,6 @@ This package contains translations used by %{name}.
 
 %meson \
   -Dgtk-doc=false \
-  -Dstemmer=true \
   -Ddep11=true
 
 %build
