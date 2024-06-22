@@ -9,13 +9,13 @@
 %global optflags %{optflags} -I%{_includedir}/libstemmer
 
 Name:		appstream-glib
-Version:	0.8.2
-Release:	4
+Version:	0.8.3
+Release:	1
 Summary:	Library for reading and writing AppStream metadata
 Group:		System/Libraries
 License:	LGPLv2+
-Url:		http://people.freedesktop.org/~hughsient/appstream-glib/
-Source0:	http://people.freedesktop.org/~hughsient/appstream-glib/releases/%{name}-%{version}.tar.xz
+Url:		https://people.freedesktop.org/~hughsient/appstream-glib/
+Source0:	https://people.freedesktop.org/~hughsient/appstream-glib/releases/%{name}-%{version}.tar.xz
 
 BuildRequires:	meson
 BuildRequires:	gettext-devel
