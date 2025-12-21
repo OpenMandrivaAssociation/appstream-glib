@@ -17,6 +17,7 @@ License:	LGPLv2+
 Url:		https://people.freedesktop.org/~hughsient/appstream-glib/
 Source0:	https://people.freedesktop.org/~hughsient/appstream-glib/releases/%{name}-%{version}.tar.xz
 
+BuildRequires:	make
 BuildRequires:	meson
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
